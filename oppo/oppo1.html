@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 头部 -->
+  <header>
+    <!-- 头部中间容器 -->
+    <nav class="header-items">
+      <!-- logo -->
+      <span>oppo</span>
+      <ul class="menus">
+        <li>手机</li>
+        <li>智能硬件</li>
+        <li>欢太商城</li>
+        <li>关于OPPO</li>
+        <li>ColorOS</li>
+        <li>服务</li>
+        <li>企业业务</li>
+      </ul>
+    </nav>
+  </header>
+  <!-- 轮播图 -->
+  <div class="banner">
+    <div class="banner-items">
+      <img src="./imgs/1.jpg" alt="">
+      <img src="./imgs/2.jpg" alt="">
+      <img src="./imgs/3.jpg" alt="">
+      <img src="./imgs/1.jpg" alt="">
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+
+</script>
+<style>
+  .header-items {
+    /* width: 100px; */
+    /* padding-left: 30px; */
+    line-height: 70px;
+    display: flex;
+    /* text-align: center;
+     */
+  }
+
+  .header-items span {
+    font-size: 26px;
+    /* border: tan 1px solid; */
+  }
+
+  header {
+    /* width: 100%; */
+    /* display: inline-flex; */
+    /* border: darkgray 1px solid; */
+    /* justify-content: space-around; */
+  }
+  .menus{
+    list-style: none;
+    /* display: inline-block; */
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    /* border: olive 1px solid; */
+    margin: auto;
+    color: rgb(109, 104, 104);
+  }
+  li{
+    /* border: springgreen 1px solid; */
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    outline: none;
+  }
+  html,body {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .banner{
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-items{
+    transition: transform .8s ease;
+  }
+</style>

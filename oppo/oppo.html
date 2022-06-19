@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 导入字体文件 */
+        @font-face {
+            font-family: "OPPOSans-Ver2";
+            src: url(./fonts/OPPOSansWeb2-cn.woff2) format("woff2");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        body {
+            font-family: 'OPPOSans-Ver2';
+            font-variation-settings: 'wght'550;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+        }
+
+        /* 头部相关 */
+        header {
+            height: 80px;
+            font-size: 13px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 2;
+        }
+
+        header.white {
+            fill: white;
+        }
+
+        header.white a {
+            color: white !important;
+        }
+
+        @keyframes move-down {
+            0% {
+                margin-top: 0;
+            }
+
+            100% {
+                margin-top: 15px;
+            }
+        }
+
+        .header-items {
+            width: 1312px;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Logo */
+        .dark-logo {
+            height: 23px;
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto 0;
+            z-index: 9;
+        }
+
+        /* 中间菜单项 */
+        .menus {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-variation-settings: 'wght'750;
+            font-size: 0px;
+        }
+
+        .menus li {
+            margin: 0 17.6px;
+            font-size: 16px;
+        }
+
+        .menus li>a {
+            display: block;
+            cursor: pointer;
+            opacity: .56;
+            z-index: 9;
+        }
+
+        .menus li>a:hover {
+            opacity: 1;
+        }
+
+        /* 轮播图 */
+        .banner {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-items {
+            transition: transform .8s ease;
+        }
+
+        .banner img {
+            float: left;
+        }
+
+        .banner .points {
+            position: absolute;
+            text-align: center;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+        }
+
+        .banner .points i {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 12px;
+            cursor: pointer;
+        }
+
+        .banner .points i.active {
+            background: gray;
+        }
+
+        /* 返回顶部 */
+        .back-top {
+            position: fixed;
+            right: 64px;
+            bottom: 20px;
+            width: 42px;
+            height: 42px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid #f4f6ec;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .back-top:hover {
+            opacity: .7;
+        }
+
+        .back-top img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* 中间部分 */
+        main .new-products {
+            width: 1312px;
+            margin: 0 auto;
+            margin-top: 10px;
+            padding: 128px 0;
+        }
+
+        /* 新品 */
+        main .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .info .product-card-title {
+            font-size: 42px;
+        }
+
+        .info .product-card-link a {
+            font-size: 18px;
+            border-bottom: 1px solid #000;
+        }
+
+        .info .product-card-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-card-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-card-content .wide {
+            width: 801px;
+            height: 682px;
+            overflow: hidden;
+        }
+
+        .product-card-content>div>a {
+            display: block;
+            overflow: hidden;
+        }
+
+        .product-card-content img {
+            width: 100%;
+            transform: scale(1.1);
+            transition: transform .3s linear;
+            display: block;
+        }
+
+        .product-card-content img:hover {
+            transform: scale(1);
+        }
+
+        .product-card-content .title {
+            display: flex;
+            margin-top: 16px;
+            align-items: center;
+            font-size: 20px;
+            font-variation-settings: 'wght'750;
+        }
+
+        .product-card-content .title .tag {
+            margin-left: 14px;
+            color: #2EC84E;
+            font-size: 8px;
+            font-variation-settings: 'wght'750;
+        }
+
+        .product-card-content .desc {
+            margin-top: 3px;
+            font-size: 14px;
+            line-height: 1.7;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .product-card-content .cart-price {
+            font-size: 16px;
+            line-height: 24px;
+            font-variation-settings: 'wght'750;
+            padding-top: 12px;
+            margin-bottom: -5px;
+        }
+
+        .product-card-content .actions {
+            margin-top: 10px;
+            padding-bottom: 4px;
+        }
+
+        .product-card-content .actions .learn-more {
+            background-color: #000;
+            display: inline-block;
+            color: #fff;
+            width: 80px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 2px;
+            font-size: 12px;
+            margin-right: 12px;
+        }
+
+        .product-card-content .actions .learn-more:hover {
+            opacity: .7;
+        }
+
+        .product-card-content .actions .buy {
+            font-size: 12px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid;
+        }
+
+        .product-card-content .narrow {
+            width: 400px;
+            height: 534px;
+        }
+
+        /* 智能硬件 */
+        .hardware {
+            background: #F5F5F5;
+        }
+
+        .product-card-wrapper {
+            max-width: 1312px;
+            margin: 0 auto;
+            padding: 128px 0;
+            overflow: hidden;
+        }
+
+        /* 探索OPPO */
+        .explore {
+            background: #E0E8EA;
+        }
+
+        .cp-discover-title {
+            font-size: 36px;
+        }
+
+        .cp-discover-btns>a {
+            display: inline-block;
+            box-sizing: border-box;
+            width: 36.6px;
+            font-size: 20px;
+            margin: 0 12px;
+        }
+
+        .cp-discover-btns>a.disabled {
+            opacity: .56;
+            cursor: not-allowed;
+        }
+
+        .cp-discover-btns>a:last-child {
+            margin: 0;
+        }
+
+        .cp-discover {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 36px;
+        }
+
+        .swiper-container {
+            white-space: nowrap;
+            font-size: 0;
+            transition: transform .3s linear;
+        }
+
+        .swiper-container .item {
+            display: inline-block;
+            margin-right: 20px;
+            width: 424px;
+            height: 282px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .swiper-container .item video {
+            width: 100%;
+        }
+
+        .swiper-container .img-box {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swiper-container .video img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9;
+        }
+
+        .swiper-container .item img {
+            width: 100%;
+            transform: scale(1.1);
+        }
+
+        .swiper-container .video img {
+            transition: opacity .3s linear;
+        }
+
+        .swiper-container .item .video-box {
+            opacity: 0;
+            transition: opacity .3s linear;
+        }
+
+        .discover-title {
+            font-variation-settings: 'wght'750;
+            font-size: 20px;
+            line-height: 30px;
+            padding: 8px 0;
+        }
+
+        .discover-intro {
+            font-size: 14px;
+            line-height: 24px;
+            word-wrap: break-word;
+        }
+
+        .swiper-container .item .learn-more {
+            display: inline-block;
+            padding-top: 8px;
+            height: 24px;
+            border-bottom: 1px solid #000;
+        }
+
+        .swiper-container .item .learn-more a {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* 探索-图片的相关行为 */
+        .swiper-container .img img {
+            transition: transform .3s linear;
+        }
+
+        .swiper-container .img img:hover {
+            transform: scale(1);
+        }
+
+        footer {
+            padding: 36px 0 0;
+            background-color: #f0f0f0;
+        }
+
+        footer .main {
+            position: relative;
+            box-sizing: border-box;
+            width: 1440px;
+            margin: auto;
+            padding: 48px 60px;
+            flex-direction: column;
+            display: flex;
+        }
+
+        footer .main .nav {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        footer .main .nav dl {
+            width: 180px;
+            margin-right: 48px;
+            margin-bottom: 48px;
+        }
+
+        footer .main .nav dt {
+            font-variation-settings: 'wght'750;
+            color: rgba(0, 0, 0, 0.78);
+            font-size: 16px;
+            line-height: 22px;
+            padding-bottom: 13px;
+        }
+
+        footer .main .nav dd {
+            margin-bottom: 9px;
+        }
+
+        footer .main .nav dd>a {
+            color: rgba(0, 0, 0, 0.56);
+            font-size: 12px;
+            line-height: 17px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部开始 -->
+    <header>
+        <!-- 头部中间的容器 -->
+        <nav class="header-items">
+            <!-- Logo开始 -->
+            <svg viewBox="0 0 415 67" class="dark-logo">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#oppo-logo-common">
+                    <svg id="oppo-logo-common" viewBox="0 0 415 67">
+                        <g id="oppoLogo" stroke="none" stroke-width="1" fill-rule="evenodd">
+                            <g id="LOGO1" fill-rule="nonzero">
+                                <path
+                                    d="M33.7265527,0.00470449892 L32.8750384,0.00470449892 C13.5160254,0.319905926 1.42108547e-14,10.7733025 1.42108547e-14,25.4089987 C1.42108547e-14,40.0446948 13.5160254,50.5122049 32.870334,50.8132929 L33.7265527,50.8132929 C53.0808614,50.5027959 66.5968868,40.0493995 66.5968868,25.4089987 C66.5968868,10.768598 53.0808614,0.305792431 33.7265527,0.00470449892 M33.3031479,42.5568974 C19.1614241,42.4063534 10.0252872,35.6789199 10.0252872,25.4231122 C10.0252872,15.1673045 19.1614241,8.43516658 33.3031479,8.28932711 C47.4542807,8.43516658 56.5904176,15.1626001 56.5904176,25.4231122 C56.5904176,35.6836243 47.4542807,42.4063534 33.3125569,42.5568974"
+                                    id="形状"></path>
+                                <path
+                                    d="M247.776549,0.00470449892 L246.925035,0.00470449892 C227.566022,0.319905926 214.049997,10.7733025 214.049997,25.4089987 C214.049997,40.0446948 227.566022,50.5122049 246.920331,50.8132929 L247.776549,50.8132929 C267.130858,50.5027959 280.646883,40.0493995 280.646883,25.4089987 C280.646883,10.768598 267.130858,0.305792431 247.776549,0.00470449892 M247.353144,42.5568974 C233.211421,42.4063534 224.075284,35.6789199 224.075284,25.4231122 C224.075284,15.1673045 233.211421,8.43516658 247.353144,8.28932711 C261.504277,8.43516658 270.640413,15.1626001 270.640413,25.4231122 C270.640413,35.6836243 261.504277,42.4063534 247.362553,42.5568974"
+                                    id="形状"></path>
+                                <path
+                                    d="M176.573958,0.00470449892 L175.717739,0.00470449892 C166.496921,0.155248465 158.602772,2.6062924 152.863284,6.71802446 L152.863284,2.38518095 L142.842701,2.38518095 L142.842701,66.7192037 L152.863284,66.7192037 L152.863284,44.1376089 C158.602772,48.2446364 166.50633,50.7239075 175.713035,50.8462244 L176.573958,50.8462244 C195.928267,50.5357274 209.444292,40.082331 209.444292,25.4419302 C209.444292,10.8015295 195.928267,0.338723924 176.573958,0.0376359914 M176.145849,42.5898289 C162.004125,42.4392849 152.867988,35.7118514 152.867988,25.4560437 C152.867988,15.200236 162.004125,8.46809806 176.145849,8.32225859 C190.292277,8.46809806 199.433118,15.1955315 199.433118,25.4560437 C199.433118,35.7165557 190.292277,42.4392849 176.150553,42.5898289"
+                                    id="形状"></path>
+                                <path
+                                    d="M105.145551,0.00470449892 L104.294037,0.00470449892 C95.0732187,0.155248465 87.1790695,2.6062924 81.4348765,6.71802446 L81.4348765,2.38518095 L71.4189981,2.38518095 L71.4189981,66.7192037 L81.4348765,66.7192037 L81.4348765,44.1376089 C87.1743651,48.2446364 95.0779234,50.7239075 104.289332,50.8462244 L105.150255,50.8462244 C124.504564,50.5357274 138.020589,40.082331 138.020589,25.4419302 C138.020589,10.8015295 124.504564,0.338723924 105.145551,0.0376359914 M104.722146,42.5898289 C90.5804222,42.4392849 81.4395809,35.7118514 81.4395809,25.4560437 C81.4395809,15.200236 90.5804222,8.46809806 104.722146,8.32225859 C118.868574,8.46809806 128.004711,15.1955315 128.004711,25.4560437 C128.004711,35.7165557 118.868574,42.4392849 104.726851,42.5898289"
+                                    id="形状"></path>
+                            </g>
+                        </g>
+                    </svg>
+                </use>
+            </svg>
+            <!-- Logo结束 -->
+
+            <!-- 菜单开始 -->
+            <ul class="menus">
+                <li>
+                    <a>手机</a>
+                </li>
+                <li>
+                    <a>智能硬件</a>
+                </li>
+                <li>
+                    <a>欢太商城</a>
+                </li>
+                <li>
+                    <a>关于 OPPO</a>
+                </li>
+                <li>
+                    <a>ColorOS</a>
+                </li>
+                <li>
+                    <a>服务</a>
+                </li>
+                <li>
+                    <a>企业业务</a>
+                </li>
+            </ul>
+            <!-- 菜单结束 -->
+        </nav>
+    </header>
+    <!-- 头部结束 -->
+
+    <!-- 轮播图开始 -->
+    <div class="banner">
+        <div class="banner-items">
+            <img src="./imgs/1.jpg" alt="">
+            <img src="./imgs/2.jpg" alt="">
+            <img src="./imgs/3.jpg" alt="">
+            <img src="./imgs/1.jpg" alt="">
+        </div>
+        <div class="points">
+            <i class="active"></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
+    <!-- 轮播图结束 -->
+
+    <!-- 回到顶部开始 -->
+    <div class="back-top" onclick="backTop()">
+        <img src="./imgs/Top-simple.svg" alt="">
+    </div>
+    <!-- 回到顶部结束 -->
+
+    <!-- 中间部分 -->
+    <main>
+        <!-- 新品开始 -->
+        <section class="new-products">
+            <div class="info">
+                <p class="product-card-title">更多新品</p>
+                <p class="product-card-link">
+                    <a href="https://www.oppo.com/cn/smartphones/" target="_blank">
+                        查看全部手机
+                    </a>
+                </p>
+            </div>
+            <div class="product-card-content">
+                <div class="wide">
+                    <a href="https://www.oppo.com/cn/smartphones/series-reno/reno6-pro-plus/">
+                        <img alt="Reno6 Pro+" src="./imgs/Reno6 pro plus-middlebanner-blue-1600x1068-v2-pc.jpg">
+                    </a>
+                    <div class="title">
+                        <a href="https://www.oppo.com/cn/smartphones/series-reno/reno6-pro-plus/">Reno6 Pro+ </a>
+                        <span class="tag">新品</span>
+                    </div>
+                    <h3 class="desc">索尼 IMX766 传感器，骁龙 870 芯片</h3>
+                    <div class="cart-price"> <span>3999 元起</span> </div>
+                    <div class="actions">
+                        <a href="https://www.oppo.com/cn/smartphones/series-reno/reno6-pro-plus/"
+                            class="learn-more">了解更多</a>
+                        <a href="https://www.heytap.com/products/4797.html?utm_source=guanwang&amp;utm_medium=reno6-pro-plus&amp;utm_page=homepage&amp;utm_site=leftbanner&amp;download_app=0"
+                            class="buy">立即购买</a>
+                    </div>
+                </div>
+                <div class="narrow">
+                    <a href="https://www.oppo.com/cn/smartphones/series-reno/reno6/">
+                        <img alt="Reno6" src="./imgs/Reno6-middlebanner-black-1340x1786-v3-pc.jpg">
+                    </a>
+                    <div class="title">
+                        <a href="https://www.oppo.com/cn/smartphones/series-reno/reno6/">Reno6 </a>
+                        <span class="tag">新品</span>
+                    </div>
+                    <h3 class="desc">焕采光斑人像视频，65W 超级闪充</h3>
+                    <div class="cart-price"> <span>2799 元起</span> </div>
+                    <div class="actions">
+                        <a href="https://www.oppo.com/cn/smartphones/series-reno/reno6/" class="learn-more">了解更多</a>
+                        <a href="https://www.heytap.com/products/4747.html?utm_source=guanwang&amp;utm_medium=reno6&amp;utm_page=homepage&amp;utm_site=rightbanner&amp;download_app=0"
+                            class="buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card-content" style="margin-top: 128px;">
+                <div class="narrow">
+                    <a href="https://www.oppo.com/cn/smartphones/series-k/k9/">
+                        <img class="bg gt-mb lazyloaded"
+                            data-src="//image.oppo.com/content/dam/oppo/common/mkt/v2-2/k9-cn/middlebanner/K9-middlebanner-black-1340x1786-v3-pc.jpg"
+                            alt="OPPO K9" src="./imgs/K9-middlebanner-black-1340x1786-v3-pc.jpg">
+                    </a>
+                    <div class="title">
+                        <a href="https://www.oppo.com/cn/smartphones/series-k/k9/">OPPO K9</a>
+                        <span class="tag">热销</span>
+                    </div>
+                    <h3 class="desc">充电 5 分钟，开黑 2 小时</h3>
+                    <div class="actions">
+                        <a href="https://www.oppo.com/cn/smartphones/series-k/k9/" class="learn-more">了解更多</a>
+                        <a href="https://www.heytap.com/products/4108.html?utm_source=guanwang&amp;utm_medium=k9&amp;utm_page=homepage&amp;utm_site=middlebanner&amp;download_app=0"
+                            class="buy">立即购买</a>
+                    </div>
+                </div>
+                <div class="wide">
+                    <a href="https://www.oppo.com/cn/smartphones/series-find-x/find-x3-series/">
+                        <img class="bg gt-mb  bg-pc lazyloaded"
+                            data-src="//image.oppo.com/content/dam/oppo/common/mkt/v2-2/find-x3-series-cn/middlebanner/Find X3-middlebanner-moka-1600x1068-v2-pc.jpg"
+                            alt="Find X3 系列" src="./imgs/Find X3-middlebanner-moka-1600x1068-v2-pc.jpg">
+                    </a>
+                    <div class="title">
+                        <a href="https://www.oppo.com/cn/smartphones/series-find-x/find-x3-series/">Find X3 系列 </a>
+                        <span class="tag">热销</span>
+                    </div>
+                    <h3 class="desc">宇宙摩卡，浪漫上市</h3>
+                    <div class="actions">
+                        <a href="https://www.oppo.com/cn/smartphones/series-find-x/find-x3-series/"
+                            class="learn-more">了解更多</a>
+                        <a href="https://www.heytap.com/products/3795.html?utm_source=guanwang&amp;utm_medium=find-x3-series&amp;utm_page=homepage&amp;utm_site=middlebanner&amp;download_app=0"
+                            class="buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 新品结束 -->
+
+        <!-- 智能硬件 -->
+        <section class="hardware">
+            <div class="product-card-wrapper">
+                <div class="info">
+                    <p class="product-card-title">智能硬件</p>
+                    <p class="product-card-link">
+                        <a href="https://www.oppo.com/cn/accessories/" target="_blank">
+                            查看全部智能硬件
+                        </a>
+                    </p>
+                </div>
+                <div class="product-card-content">
+                    <div class="wide">
+                        <a href="https://www.oppo.com/cn/accessories/oppo-tv-k9/">
+                            <img class="gt-mb lazyloaded" alt="OPPO 智能电视 K9"
+                                src="./imgs/TV K9-middlebanner-black-1600x1068-v2-pc.jpg">
+                        </a>
+                        <div class="title">
+                            <a href="https://www.oppo.com/cn/accessories/oppo-tv-k9/">OPPO 智能电视 K9 </a>
+                            <span class="tag">新品</span>
+                        </div>
+                        <h3 class="desc">十亿色彩，十分出彩</h3>
+                        <div class="actions">
+                            <a href="https://www.oppo.com/cn/accessories/oppo-tv-k9/" class="learn-more">了解更多</a>
+                            <a href="https://www.heytap.com/products/4204.html?utm_source=guanwang&amp;utm_medium=tv-k9&amp;utm_page=homepage&amp;utm_site=bottombanner&amp;download_app=0"
+                                class="buy">立即购买</a>
+                        </div>
+                    </div>
+                    <div class="narrow">
+                        <a href="https://www.oppo.com/cn/accessories/oppo-enco-free2/">
+                            <img class="gt-mb  bg bg-pc lazyloaded" alt="OPPO Enco Free2"
+                                src="./imgs/Enco free2-middlebanner-white-1340x1786-v3-pc.jpg">
+                        </a>
+                        <div class="title">
+                            <a href="https://www.oppo.com/cn/accessories/oppo-enco-free2/">OPPO Enco Free2 </a>
+                            <span class="tag" style="color:#2EC84E;">新品</span>
+                        </div>
+                        <h3 class="desc">个性化降噪，每一刻都美妙</h3>
+                        <div class="actions">
+                            <a href="https://www.oppo.com/cn/accessories/oppo-enco-free2/" class="learn-more">了解更多</a>
+                            <a href="https://www.heytap.com/products/4522.html?utm_source=guanwang&amp;utm_medium=enco-free2&amp;utm_page=homepage&amp;utm_site=bottombanner&amp;download_app=0"
+                                class="buy">立即购买</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 智能硬件结束 -->
+
+        <!-- 探索OPPO开始 -->
+        <section class="explore">
+            <div class="product-card-wrapper">
+                <div class="cp-discover">
+                    <p class="cp-discover-title">探索 OPPO</p>
+                    <p class="cp-discover-btns">
+                        <a class="disabled" href="javascript:;">
+                            <svg width="32" height="33" viewBox="0 0 32 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M1.90735e-06 16.5C1.90735e-06 7.71199 7.13059 0.5 16 0.5C24.8694 0.5 32 7.71199 32 16.5C32 25.288 24.8694 32.5 16 32.5C7.13059 32.5 1.90735e-06 25.288 1.90735e-06 16.5ZM30.6383 16.5C30.6383 8.43482 24.0882 1.8617 16 1.8617C7.91176 1.8617 1.3617 8.43482 1.3617 16.5C1.3617 24.5652 7.91176 31.1383 16 31.1383C24.0882 31.1383 30.6383 24.5652 30.6383 16.5ZM12.8377 18.7097C13.1036 18.9756 13.1036 19.4067 12.8377 19.6726C12.5718 19.9385 12.1407 19.9385 11.8748 19.6726L8.66999 16.4677L11.8748 13.2629C12.1407 12.997 12.5718 12.997 12.8377 13.2629C13.1036 13.5288 13.1036 13.9599 12.8377 14.2258L11.2148 15.8486H22.5695C22.9456 15.8486 22.9456 17.2103 22.5695 17.2103H11.3383L12.8377 18.7097Z"
+                                    fill="black"></path>
+                            </svg>
+                        </a>
+                        <a href="javascript:;">
+                            <svg width="32" height="33" viewBox="0 0 32 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M32 16.5C32 7.71199 24.8694 0.5 16 0.5C7.13059 0.5 0 7.71199 0 16.5C0 25.288 7.13059 32.5 16 32.5C24.8694 32.5 32 25.288 32 16.5ZM1.3617 16.5C1.3617 8.43482 7.91176 1.8617 16 1.8617C24.0882 1.8617 30.6383 8.43482 30.6383 16.5C30.6383 24.5652 24.0882 31.1383 16 31.1383C7.91176 31.1383 1.3617 24.5652 1.3617 16.5ZM19.1623 18.7097C18.8964 18.9756 18.8964 19.4067 19.1623 19.6726C19.4282 19.9385 19.8593 19.9385 20.1252 19.6726L23.33 16.4677L20.1252 13.2629C19.8593 12.997 19.4282 12.997 19.1623 13.2629C18.8964 13.5288 18.8964 13.9599 19.1623 14.2258L20.7852 15.8486H9.43046C9.05443 15.8486 9.05443 17.2103 9.43046 17.2103H20.6617L19.1623 18.7097Z"
+                                    fill="black"></path>
+                            </svg>
+                        </a>
+                    </p>
+                </div>
+                <div class="swiper-container">
+                    <div class="item video">
+                        <div class="img-box">
+                            <img alt="Reno 视频同学录大赛 | 前往微博参与" src="./imgs/Reno6-universe-v3-pc.jpg">
+                            <div class="video-box">
+                                <video preload="auto" autoplay="autoplay" playsinline muted loop="loop"
+                                    windowlessvideo="true" src="./videos/kv-video-cover-1-v2.mp4"></video>
+                            </div>
+                        </div>
+                        <p class="discover-title">探索 Reno 系列</p>
+                        <p class="discover-intro">在我眼里你会发光</p>
+                        <div class="learn-more">
+                            <a href="https://www.oppo.com/cn/smartphones/series-reno/">了解更多</a>
+                        </div>
+                    </div>
+                    <div class="item img">
+                        <div class="img-box">
+                            <img alt="线下体验店 | 查找附近体验店" src="./imgs/discovery-01.jpg">
+                        </div>
+                        <p class="discover-title">线下体验店</p>
+                        <p class="discover-intro">查找附近 OPPO 体验店，了解更多会员权益</p>
+                        <div class="learn-more">
+                            <a href="https://www.oppo.com/cn/offline-stores/">了解更多</a>
+                        </div>
+                    </div>
+                    <div class="item img">
+                        <div class="img-box">
+                            <img alt="O 学堂 | 立即报名摄影课程" src="./imgs/discovery-02.jpg">
+                        </div>
+                        <p class="discover-title">O学堂</p>
+                        <p class="discover-intro">立即报名摄影课程，一起发现生活中的美</p>
+                        <div class="learn-more">
+                            <a href="https://support.oppo.com/cn/oschool-home/">了解更多</a>
+                        </div>
+                    </div>
+                    <div class="item img">
+                        <div class="img-box">
+                            <img alt="会员日 | 参与每月 16～18 日活动" src="./imgs/discovery-03.jpg">
+                        </div>
+                        <p class="discover-title">会员日</p>
+                        <p class="discover-intro">参与每月 16-18 日会员日活动</p>
+                        <div class="learn-more">
+                            <a href="https://support.oppo.com/cn/serviceday/">了解更多</a>
+                        </div>
+                    </div>
+                    <div class="item video">
+                        <div class="img-box">
+                            <img alt="万物互融 | OPPO 随享，美好生活随时分享" src="./imgs/discovery-04.jpg">
+                            <div class="video-box">
+                                <video preload="auto" autoplay="autoplay" playsinline muted loop="loop"
+                                    windowlessvideo="true" src="./videos/kv-video-cover-5.mp4"></video>
+                            </div>
+                        </div>
+                        <p class="discover-title" style="color:#000000;">万物互融</p>
+                        <p class="discover-intro" style="color:#000000;">OPPO 随享，美好生活随时分享</p>
+                        <div class="learn-more">
+                            <a href="https://www.oppo.com/cn/events/iot/">了解更多</a>
+                        </div>
+                    </div>
+                    <div class="item img">
+                        <div class="img-box">
+                            <img alt="活动 | 留住消失的色彩" src="./imgs/discovery-05.jpg">
+                        </div>
+                        <p class="discover-title">留住消失的色彩</p>
+                        <p class="discover-intro">与国家地理深度合作，致力保护濒危物种</p>
+                        <div class="learn-more">
+                            <a href="https://events.oppo.com/cn/endangered-colour/">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 探索OPPO结束 -->
+
+        <!-- 底部导航开始 -->
+        <footer>
+            <section class="main">
+                <nav class="nav">
+                    <dl>
+                        <dt>推荐产品</dt>
+                        <dd><a href="https://www.oppo.com/cn/smartphones/series-find-x/find-x3-series/"
+                                target="_blank">Find X3 系列</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/smartphones/series-reno/reno6-pro/" target="_blank">Reno6
+                                系列</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/smartphones/series-ace/ace2/" target="_blank">Ace2</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/smartphones/series-a/a95/" target="_blank">A95</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/smartphones/series-k/k9/" target="_blank">K9</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/accessories/oppo-enco-air/" target="_blank">Enco Air</a>
+                        </dd>
+                        <dd><a href="https://www.oppo.com/cn/smartphones/" target="_blank">查看全部手机</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/accessories/" target="_blank">查看全部智能硬件</a></dd>
+                    </dl>
+
+                    <dl>
+                        <dt>购买渠道</dt>
+                        <dd><a href="https://www.oppo.com/cn/offline-stores/" target="_blank">线下体验店</a></dd>
+                        <dd><a href="https://www.heytap.com/cn/web/topic/700100.html?utm_source=guanwang&amp;utm_medium=heytap&amp;utm_site=footer"
+                                target="_blank">欢太商城</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/online_store/" target="_blank">官方授权网店</a></dd>
+                        <dd><a class="footer-quick-link" data-mb-href="https://www.heytap.com/app/download.html"
+                                data-pc-href="https://www.oppo.com/cn/download-storeapp/"
+                                href="https://www.oppo.com/cn/download-storeapp/" target="_blank">欢太商城客户端下载</a></dd>
+                    </dl>
+
+                    <dl>
+                        <dt>探索精彩 OPPO</dt>
+                        <dd><a href="https://www.oppo.com/cn/about/" target="_blank">关于 OPPO</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/newsroom/" target="_blank">新闻中心</a></dd>
+                        <dd><a href="https://www.oppo.cn/" target="_blank">OPPO 社区</a></dd>
+                        <dd><a href="https://sc.hotjob.cn/wt/OPPO/web/index?brandCode=1" target="_blank">加入我们</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/patent/" target="_blank">知识产权</a></dd>
+                        <dd><a href="https://www.oppo.com/content/dam/oppo/common/mkt/footer/2020%20OPPO%20Sustainability%20Report%20-%20CN.pdf"
+                                target="_blank">可持续发展报告</a></dd>
+                        <dd><a href="https://privacy.oppo.com/cn/overview/" target="_blank">安全隐私</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>商务合作</dt>
+                        <dd><a href="https://business.oppo.com/office/home/" target="_blank">企业业务</a></dd>
+                        <dd><a href="https://open.oppomobile.com/" target="_blank">开放平台</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/service/policy/sourcing/" target="_blank">廉洁合规</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/contact/" target="_blank">媒体联络</a></dd>
+                    </dl>
+
+                    <dl>
+                        <dt>服务与支持</dt>
+                        <dd><a href="https://www.oppo.com/cn/contact/" target="_blank">联系我们</a></dd>
+                        <dd><a href="https://www.coloros.com/feature/coloros11" target="_blank">ColorOS</a></dd>
+                        <dd><a href="https://cloud.oppo.com/login.html" target="_blank">云服务</a></dd>
+                        <dd><a href="https://yihuan.oppo.com/static/index.html#/?channelId=100003"
+                                target="_blank">以旧换新</a></dd>
+                        <dd><a href="https://www.oppo.com/cn/service/policy/" target="_blank">服务政策</a></dd>
+                        <dd><a href="https://www.coloros.com/presoftware/index.html" target="_blank">预置软件公示</a></dd>
+                        <dd><a href="https://security.oppo.com/cn/" target="_blank">安全响应中心</a></dd>
+                    </dl>
+                </nav>
+        </footer>
+        <!-- 底部导航结束 -->
+    </main>
+
+    <script>
+        let timer = null;   //设置滑动
+        let backTopTimer = null;   //返回到顶部的timer
+        const seconds = 500; //完成滑动至顶部的时长
+        let index = 0;  //当前滑动的下标
+        let moveItemIndex = 0;  //移动的项目下标
+        const header = document.querySelector('header');
+        const banner = document.querySelector('.banner-items'); //轮播图
+        const points = document.querySelectorAll('.points i');  //点
+        const videoContainer = document.querySelectorAll('.swiper-container .video .img-box');   //视频页面容器
+        // const videoImg = document.querySelector('.swiper-container .video img');    //视频封面
+        // const videoBox = document.querySelector('.swiper-container .video-box');    //视频容器
+        // const video = document.querySelector('.swiper-container .video-box video');    //视频
+        const moveButtons = document.querySelectorAll('.cp-discover-btns>a');   //移动的按钮
+        const swiperContainer = document.querySelector('.swiper-container');    //移动的项目盒子
+
+        // 返回到顶部
+        function backTop() {
+            clearInterval(backTopTimer);
+            const perPx = document.documentElement.scrollTop / seconds * 5; //每毫秒滑动距离
+            backTopTimer = setInterval(() => {
+                document.documentElement.scrollTop -= perPx;
+                if (document.documentElement.scrollTop <= 0) {
+                    clearInterval(backTopTimer);
+                }
+            });
+        }
+
+        // 设置滑动宽度
+        function setSwipe() {
+            banner.style.width = (innerWidth * banner.children.length) + 'px';
+            for (const item of banner.children) {
+                item.style.width = innerWidth + 'px';
+            }
+        }
+        setSwipe();
+        window.onresize = setSwipe;
+
+        // 滑动
+        function swipe() {
+            let distance = -index * innerWidth;  //要滑动的距离
+            banner.style.transform = `translateX(${distance}px)`;
+            // 判断显示激活哪个点
+            points.forEach((item, i) => {
+                if (i === index || (i === 0 && index === banner.children.length - 1)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            // 如果是第二张则换成白色
+            if (index === 1) {
+                header.classList.add('white');
+            } else {
+                header.classList.remove('white');
+            }
+        }
+
+        banner.addEventListener('transitionend', () => {
+            // 如果已经是最后一张则挪移到最前方
+            if (index === banner.children.length - 1) {
+                banner.style.transitionProperty = 'width';
+                index = 0;
+                swipe();
+                setTimeout(() => {
+                    banner.style.transitionProperty = 'transform';
+                });
+            }
+        });
+
+        // 启动自动滑动
+        function autoSwipe() {
+            timer = setInterval(() => {
+                if (++index >= banner.children.length) {
+                    index = 0;
+                }
+                swipe();
+            }, 3000);
+        }
+
+        autoSwipe();
+
+        // 给每个点绑定点击事件
+        points.forEach((item, i) => {
+            item.onclick = function () {
+                clearTimeout(timer);
+                index = i;
+                swipe();
+                autoSwipe();
+            }
+        });
+
+        // 视频播放相关
+        videoContainer.forEach(item => {
+            const videoImg = item.querySelector('img');
+            const videoBox = item.querySelector('.video-box');
+            videoImg.onmouseover = () => {
+                videoImg.style.opacity = 0;
+                videoBox.style.opacity = 1;
+            }
+
+            videoImg.onmouseout = () => {
+                videoImg.style.opacity = 1;
+                videoBox.style.opacity = 0;
+            }
+        });
+
+
+
+        //移动项目相关
+        const moveItem = next => {
+            const index = swiperContainer.children.length - 3;
+            if (next > index || next < 0) {
+                return;
+            }
+            moveButtons[0].classList.remove('disabled');
+            moveButtons[1].classList.remove('disabled');
+            moveItemIndex = next;
+            if (moveItemIndex === index) {
+                moveButtons[1].classList.add('disabled');
+            } else if (moveItemIndex === 0) {
+                moveButtons[0].classList.add('disabled');
+            }
+            const distance = -moveItemIndex * 444;
+            swiperContainer.style.transform = `translateX(${distance}px)`;
+        };
+
+        moveButtons[0].onclick = () => {
+            moveItem(moveItemIndex - 1);
+        }
+
+        moveButtons[1].onclick = () => {
+            moveItem(moveItemIndex + 1);
+        }
+    </script>
+</body>
+
+</html>
