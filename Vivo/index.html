@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .imgs {
+            position: relative;
+            margin-left: 100px;
+        }
+
+        img {
+            position: absolute;
+            transition: left .3s ease;
+        }
+
+        img:first-child {
+            z-index: 1;
+            left: 0px;
+        }
+
+        img:nth-child(2) {
+            z-index: 2;
+            left: 0;
+        }
+
+        img:nth-child(3) {
+            z-index: 3;
+            left: 0px;
+        }
+
+        img:nth-child(4) {
+            z-index: 4;
+            left: 70px;
+        }
+
+        .imgs:hover img:first-child {
+            left: -70px;
+        }
+
+        .imgs:hover img:nth-child(3) {
+            left: 70px;
+        }
+
+        .imgs:hover img:last-child {
+            left: 140px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imgs">
+        <img src="1.png" alt="">
+        <img src="2.png" alt="">
+        <img src="3.png" alt="">
+        <img src="4.png" alt="">
+    </div>
+</body>
+
+</html>
