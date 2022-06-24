@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 第三种  绝对定位  未知宽高 -->
+    <div id="parent">
+        <div id="child">
+            5889952
+        </div>
+    </div>
+    <style>
+        #parent {
+            /* 先来给父容器(父元素)设置宽高, 实际上父容器也可以是body元素，此时就不用设置宽高了 */
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            /*还是为了看的清楚些*/
+            /* 先将父容器设置为相对定位 不设置相对定位的话这里会相对于body 来进行绝对定位*/
+            position: relative;
+        }
+
+        #child {
+            background-color: skyblue;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</body>
+
+</html>
