@@ -1,0 +1,11 @@
+// 全局样式文件
+:root{ /* 全局作用域 */
+    --mainBackColor:#2b4b6b;   /* 主要背景颜色 */
+    --resetGray    :#909399;   /* 重置的灰色 */
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
